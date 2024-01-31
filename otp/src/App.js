@@ -1,33 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 
 const App = () => {
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+
+  const handleChange = (index, value) => {
+    const newOtp = [...otp];
+    newOtp[index] = value;
+    setOtp(newOtp);
+
+    if (index < otp.length - 1 && value !== "") {
+      document.getElementById(`otp-input-${index + 1}`).focus();
+    }
+  };
+
   return (
     <div className="h-screen mx-auto max-w-2xl flex text-center justify-center">
-      <div className="h-400 w-400  flex justify-center items-center max-w-2xl mx-auto">
-        <input
-          type="text"
-          class="appearance-none w-12 h-12 mx-1 text-4xl border border-gray-300 rounded text-center focus:outline-none focus:border-indigo-500"
-          maxLength="1"/>
+      <div className="h-400 w-400 flex justify-center items-center max-w-2xl mx-auto">
+        {otp.map((digit, index) => (
           <input
-          type="text"
-          class="appearance-none w-12 h-12 mx-1 text-4xl border border-gray-300 rounded text-center focus:outline-none focus:border-indigo-500"
-          maxLength="1"/>
-          <input
-          type="text"
-          class="appearance-none w-12 h-12 mx-1 text-4xl border border-gray-300 rounded text-center focus:outline-none focus:border-indigo-500"
-          maxLength="1"/>
-          <input
-          type="text"
-          class="appearance-none w-12 h-12 mx-1 text-4xl border border-gray-300 rounded text-center focus:outline-none focus:border-indigo-500"
-          maxLength="1"/>
-          <input
-          type="text"
-          class="appearance-none w-12 h-12 mx-1 text-4xl border border-gray-300 rounded text-center focus:outline-none focus:border-indigo-500"
-          maxLength="1"/>
-          <input
-          type="text"
-          class="appearance-none w-12 h-12 mx-1 text-4xl border border-gray-300 rounded text-center focus:outline-none focus:border-indigo-500"
-          maxLength="1"/>
+            type="text"
+            id={`otp-input-${index}`}
+            className="appearance-none w-12 h-12 mx-1 text-4xl border border-gray-300 rounded text-center focus:outline-none focus:border-indigo-500"
+            maxLength="1"
+            value={digit}
+            onChange={(e) => handleChange(index, e.target.value)}
+          />
+        ))}
       </div>
     </div>
   );
