@@ -14,8 +14,9 @@ const App = () => {
   };
 
   return (
-    <div className="h-screen mx-auto max-w-2xl flex text-center justify-center">
-      <div className="h-400 w-400 flex justify-center items-center max-w-2xl mx-auto">
+    <div className="h-screen flex-col mx-auto max-w-2xl flex text-center justify-center">
+     <form>
+     <div className="h-400 w-400 flex justify-center items-center max-w-2xl mx-auto">
         {otp.map((digit, index) => (
           <input
             type="text"
@@ -27,6 +28,8 @@ const App = () => {
           />
         ))}
       </div>
+      <input type="submit" value="SUBMIT" className="my-10 p-4 bg-blue-500 text-white rounded cursor-pointer"/>
+     </form>
     </div>
   );
 };
