@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CardList from "./Card";
 
 const App = () => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -17,15 +18,18 @@ const App = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const allBoxesFilled = otp.every((digit) => digit !== "");
-    if(allBoxesFilled){
+    if (allBoxesFilled) {
       setFormset(true);
     }
   };
 
   return (
-    <div className="h-screen flex mx-auto max-w-2xl flex-col items-center justify-center">
+    <div className="flex mx-auto max-w-2xl flex-col items-center justify-center">
       {!formset ? (
-        <form onSubmit={handleSubmit} className="flex justify-center items-center flex-col">
+        <form
+          onSubmit={handleSubmit}
+          className="mt-6 flex justify-center items-center flex-col"
+        >
           <div className="h-400 w-400 flex justify-center items-center max-w-2xl mx-auto">
             {otp.map((digit, index) => (
               <input
@@ -50,6 +54,8 @@ const App = () => {
           <h2>The form is set</h2>
         </div>
       )}
+
+      <CardList />
     </div>
   );
 };
